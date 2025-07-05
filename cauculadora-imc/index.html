@@ -6,15 +6,40 @@
   <title>Calculadora de IMC com Animação</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    .social-icons {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+    }
+
+    .social-icons p {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
     .social-icons a {
-      margin-right: 10px;
-      text-decoration: none;
+      margin: 0 10px;
+      display: inline-block;
     }
 
     .social-icons img {
-      width: 32px;
-      height: 32px;
-      vertical-align: middle;
+      width: 36px;
+      height: 36px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
     }
   </style>
 </head>
@@ -32,18 +57,19 @@
         <button type="submit">Calcular</button>
       </form>
       <div id="resultado"></div>
-      <div id="compartilhar" class="social-icons" style="display: none; margin-top: 20px;">
-        <p>Compartilhe seu resultado:</p>
+      <div id="compartilhar" class="social-icons" style="display: none;">
+        <p>📤 Compartilhe seu resultado:</p>
         <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp"></a>
         <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook"></a>
         <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn"></a>
-        <a id="instagram" target="_blank"><img src="imgs/instagram.png" alt="Instagram"></a>
       </div>
     </div>
     <div class="animation">
       <img id="personagem" src="imgs/normal.png" alt="Personagem IMC">
     </div>
   </div>
+
+  <footer>👨‍💻 Criado por Rafael Soares e 🤖 ChatGPT</footer>
 
   <script>
     function autoFormatarAltura(valor) {
@@ -73,7 +99,6 @@
       const whatsapp = document.getElementById('whatsapp');
       const facebook = document.getElementById('facebook');
       const linkedin = document.getElementById('linkedin');
-      const instagram = document.getElementById('instagram');
 
       if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
         resultado.textContent = 'Por favor, insira valores válidos.';
@@ -112,6 +137,7 @@
       whatsapp.href = `https://wa.me/?text=${texto}`;
       facebook.href = `https://www.facebook.com/sharer/sharer.php?u=https://seusite.com&quote=${texto}`;
       linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=https://seusite.com&summary=${texto}`;
+
       compartilhar.style.display = 'block';
     });
   </script>
