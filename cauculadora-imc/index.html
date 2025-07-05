@@ -12,10 +12,10 @@
       <h1>Calculadora de IMC</h1>
       <form id="imcForm">
         <label for="altura">Altura (m):</label>
-        <input type="text" id="altura" placeholder="Ex: 1.75" required>
+        <input type="text" id="altura" placeholder="Ex: 1,75" required>
 
         <label for="peso">Peso (kg):</label>
-        <input type="text" id="peso" placeholder="Ex: 70" required>
+        <input type="text" id="peso" placeholder="Ex: 70,5" required>
 
         <button type="submit">Calcular</button>
       </form>
@@ -27,6 +27,18 @@
   </div>
 
   <script>
+    function formatarNumeroComVirgula(event) {
+      const campo = event.target;
+      let valor = campo.value;
+
+      valor = valor.replace(/[^\d,]/g, ''); // Remove caracteres não numéricos exceto vírgula
+      valor = valor.replace(/(\d+)(\.\d*)/, '$1,$2'); // Substitui ponto por vírgula se necessário
+      campo.value = valor;
+    }
+
+    document.getElementById('altura').addEventListener('input', formatarNumeroComVirgula);
+    document.getElementById('peso').addEventListener('input', formatarNumeroComVirgula);
+
     document.getElementById('imcForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -44,27 +56,27 @@
         return;
       }
 
-      const imc = peso / (altura * peso);
+      const imc = peso / (altura * altura);
       let mensagem = '';
 
       if (imc < 18.5) {
-        mensagem = `IMC: ${imc.toFixed(2)} - Abaixo do peso`;
+        mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - Abaixo do peso`;
         personagem.src = 'imgs/magro.png';
       } else if (imc >= 18.5 && imc <= 24.9) {
-        mensagem = `IMC: ${imc.toFixed(2)} - Peso normal`;
+        mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - Peso normal`;
         personagem.src = 'imgs/normal.png';
       } else if (imc >= 25.0 && imc <= 29.9) {
-        mensagem = `IMC: ${imc.toFixed(2)} - Sobrepeso`;
+        mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - Sobrepeso`;
         personagem.src = 'imgs/sobrepeso.png';
-      } else if (imc >= 30.0 && imc <= 34.9) {
-        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade Grau I`;
-        personagem.src = 'imgs/obeso1.png';
-      } else if (imc >= 35.0 && imc <= 39.9) {
-        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade Grau II`;
-        personagem.src = 'imgs/obeso2.png';
-      } else {
-        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade Grau III`;
-        personagem.src = 'imgs/obeso3.png';
+      } else if (imc >= 30.0) {
+        if (imc <= 34.9) {
+          mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - Obesidade Grau I`;
+        } else if (imc <= 39.9) {
+          mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - Obesidade Grau II`;
+        } else {
+          mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - Obesidade Grau III`;
+        }
+        personagem.src = 'imgs/obeso.png';
       }
 
       resultado.textContent = mensagem;
