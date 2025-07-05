@@ -5,6 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de IMC</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 2rem;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .calculator {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      width: 320px;
+    }
+    .calculator h1 {
+      color: #90caf9;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0097a7;
+    }
+    #resultado {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #a5d6a7;
+    }
+    .animation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .animation img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -18,15 +100,15 @@
         <button type="submit">Calcular</button>
       </form>
       <div id="resultado"></div>
-      <div id="compartilhar" class="social-icons" style="display: none;">
+      <div id="compartilhar" class="social-icons" style="display: none; margin-top: 1rem;">
         <p>📤 Compartilhe seu resultado:</p>
-        <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp"></a>
-        <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook"></a>
-        <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn"></a>
+        <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp" width="32"></a>
+        <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook" width="32"></a>
+        <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn" width="32"></a>
       </div>
     </div>
     <div class="animation">
-      <img id="personagem" src="imgs/normal.png" alt="Personagem IMC">
+      <img id="personagem" src="imgs/calc.png" alt="Imagem Padrão IMC">
     </div>
   </div>
   <footer>👨‍💻 Criado por Rafael Soares e 🤖 ChatGPT</footer>
@@ -59,22 +141,21 @@
         return;
       }
       const imc = peso / (altura * altura);
-      let mensagem = '';
       let categoria = '';
       if (imc < 18.5) {
         categoria = 'Abaixo do peso';
         personagem.src = 'imgs/magro.png';
-      } else if (imc >= 18.5 && imc <= 24.9) {
+      } else if (imc <= 24.9) {
         categoria = 'Peso normal';
         personagem.src = 'imgs/normal.png';
-      } else if (imc >= 25.0 && imc <= 29.9) {
+      } else if (imc <= 29.9) {
         categoria = 'Sobrepeso';
         personagem.src = 'imgs/sobrepeso.png';
-      } else if (imc >= 30.0) {
+      } else {
         categoria = 'Obesidade';
         personagem.src = 'imgs/obeso.png';
       }
-      mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - ${categoria}`;
+      const mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - ${categoria}`;
       resultado.textContent = mensagem;
       const texto = encodeURIComponent(`Meu resultado no cálculo de IMC foi: ${mensagem}`);
       whatsapp.href = `https://wa.me/?text=${texto}`;
