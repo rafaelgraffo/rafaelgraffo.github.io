@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IMC com Animação</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="calculator">
+      <h1>Calculadora de IMC</h1>
+      <form id="imcForm">
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" step="0.01" required>
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" required>
+
+        <button type="submit">Calcular</button>
+      </form>
+      <div id="resultado"></div>
+    </div>
+    <div class="animation">
+      <img id="personagem" src="imgs/normal.png" alt="Personagem IMC">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('imcForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const altura = parseFloat(document.getElementById('altura').value);
+      const peso = parseFloat(document.getElementById('peso').value);
+      const resultado = document.getElementById('resultado');
+      const personagem = document.getElementById('personagem');
+
+      if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
+        resultado.textContent = 'Por favor, insira valores válidos.';
+        return;
+      }
+
+      const imc = peso / (altura * altura);
+      let mensagem = '';
+
+      if (imc < 18.5) {
+        mensagem = `IMC: ${imc.toFixed(2)} - Abaixo do peso`;
+        personagem.src = 'imgs/magro.png';
+      } else if (imc < 24.9) {
+        mensagem = `IMC: ${imc.toFixed(2)} - Peso normal`;
+        personagem.src = 'imgs/normal.png';
+      } else if (imc < 29.9) {
+        mensagem = `IMC: ${imc.toFixed(2)} - Sobrepeso`;
+        personagem.src = 'imgs/sobrepeso.png';
+      } else {
+        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade`;
+        personagem.src = 'imgs/obeso.png';
+      }
+
+      resultado.textContent = mensagem;
+    });
+  </script>
+</body>
+</html>
