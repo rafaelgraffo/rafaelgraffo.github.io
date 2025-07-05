@@ -46,15 +46,21 @@
       if (imc < 18.5) {
         mensagem = `IMC: ${imc.toFixed(2)} - Abaixo do peso`;
         personagem.src = 'imgs/magro.png';
-      } else if (imc < 24.9) {
+      } else if (imc >= 18.5 && imc <= 24.9) {
         mensagem = `IMC: ${imc.toFixed(2)} - Peso normal`;
         personagem.src = 'imgs/normal.png';
-      } else if (imc < 29.9) {
+      } else if (imc >= 25.0 && imc <= 29.9) {
         mensagem = `IMC: ${imc.toFixed(2)} - Sobrepeso`;
         personagem.src = 'imgs/sobrepeso.png';
+      } else if (imc >= 30.0 && imc <= 34.9) {
+        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade Grau I`;
+        personagem.src = 'imgs/obeso1.png';
+      } else if (imc >= 35.0 && imc <= 39.9) {
+        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade Grau II`;
+        personagem.src = 'imgs/obeso2.png';
       } else {
-        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade`;
-        personagem.src = 'imgs/obeso.png';
+        mensagem = `IMC: ${imc.toFixed(2)} - Obesidade Grau III`;
+        personagem.src = 'imgs/obeso3.png';
       }
 
       resultado.textContent = mensagem;
