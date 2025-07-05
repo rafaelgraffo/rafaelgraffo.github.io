@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background-color: #f0f0f0;
+      background-color: #e5e5e5;
       color: #333;
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -21,15 +21,15 @@
       justify-content: center;
     }
     .calculator {
-      background-color: #ffffff;
+      background-color: #f4f4f4;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       width: 100%;
       max-width: 400px;
     }
     .calculator h1 {
-      color: #00796b;
+      color: #00695c;
       margin-bottom: 1rem;
       font-size: 1.8rem;
     }
@@ -42,17 +42,17 @@
     input[type="text"] {
       width: 100%;
       padding: 0.6rem;
-      border: 1px solid #ccc;
+      border: 1px solid #bbb;
       border-radius: 5px;
       font-size: 1rem;
-      background-color: #fafafa;
+      background-color: #fff;
       color: #333;
     }
     button {
       margin-top: 1.5rem;
       width: 100%;
       padding: 0.75rem;
-      background-color: #00796b;
+      background-color: #00695c;
       color: white;
       border: none;
       border-radius: 6px;
@@ -73,7 +73,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #ffffff;
+      background-color: #f4f4f4;
       padding: 1rem;
       border-radius: 10px;
       max-width: 400px;
@@ -84,6 +84,31 @@
       max-width: 300px;
       height: auto;
       border-radius: 10px;
+    }
+    .social-icons {
+      margin-top: 1rem;
+      background-color: #eeeeee;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .social-icons p {
+      font-weight: bold;
+      color: #00695c;
+      margin-bottom: 0.8rem;
+    }
+    .social-icons a {
+      margin: 0 0.5rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.1);
+    }
+    .social-icons img {
+      width: 36px;
+      height: 36px;
     }
     footer {
       margin-top: 2rem;
@@ -112,11 +137,11 @@
         <button type="submit">Calcular</button>
       </form>
       <div id="resultado"></div>
-      <div id="compartilhar" class="social-icons" style="display: none; margin-top: 1rem;">
+      <div id="compartilhar" class="social-icons" style="display: none;">
         <p>📤 Compartilhe seu resultado:</p>
-        <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp" width="32"></a>
-        <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook" width="32"></a>
-        <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn" width="32"></a>
+        <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp"></a>
+        <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook"></a>
+        <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn"></a>
       </div>
     </div>
     <div class="animation">
