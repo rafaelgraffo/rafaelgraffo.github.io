@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de IMC com Animação</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .social-icons a {
+      margin-right: 10px;
+      text-decoration: none;
+    }
+
+    .social-icons img {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -20,11 +32,12 @@
         <button type="submit">Calcular</button>
       </form>
       <div id="resultado"></div>
-      <div id="compartilhar" style="display: none; margin-top: 20px;">
+      <div id="compartilhar" class="social-icons" style="display: none; margin-top: 20px;">
         <p>Compartilhe seu resultado:</p>
-        <a id="whatsapp" target="_blank">WhatsApp</a> |
-        <a id="facebook" target="_blank">Facebook</a> |
-        <a id="instagram" target="_blank">Instagram</a>
+        <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp"></a>
+        <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook"></a>
+        <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn"></a>
+        <a id="instagram" target="_blank"><img src="imgs/instagram.png" alt="Instagram"></a>
       </div>
     </div>
     <div class="animation">
@@ -59,6 +72,7 @@
       const compartilhar = document.getElementById('compartilhar');
       const whatsapp = document.getElementById('whatsapp');
       const facebook = document.getElementById('facebook');
+      const linkedin = document.getElementById('linkedin');
       const instagram = document.getElementById('instagram');
 
       if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
@@ -97,7 +111,8 @@
       const texto = encodeURIComponent(`Meu resultado no cálculo de IMC foi: ${mensagem}`);
       whatsapp.href = `https://wa.me/?text=${texto}`;
       facebook.href = `https://www.facebook.com/sharer/sharer.php?u=https://seusite.com&quote=${texto}`;
-      instagram.href = `https://www.instagram.com/`; // Instagram não tem compartilhamento direto por URL
+      linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=https://seusite.com&summary=${texto}`;
+      instagram.href = `https://www.instagram.com/`; // Instagram não permite compartilhamento direto
 
       compartilhar.style.display = 'block';
     });
