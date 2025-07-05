@@ -3,45 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de IMC com Animação</title>
+  <title>Calculadora de IMC</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .social-icons {
-      text-align: center;
-      margin-top: 20px;
-      padding-top: 10px;
-      border-top: 1px solid #ccc;
-    }
-
-    .social-icons p {
-      font-weight: bold;
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .social-icons a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-
-    .social-icons img {
-      width: 36px;
-      height: 36px;
-      transition: transform 0.3s ease;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.2);
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 14px;
-      color: #666;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -50,10 +13,8 @@
       <form id="imcForm">
         <label for="altura">Altura (m):</label>
         <input type="text" id="altura" placeholder="Ex: 175" required>
-
         <label for="peso">Peso (kg):</label>
         <input type="text" id="peso" placeholder="Ex: 7050" required>
-
         <button type="submit">Calcular</button>
       </form>
       <div id="resultado"></div>
@@ -68,9 +29,7 @@
       <img id="personagem" src="imgs/normal.png" alt="Personagem IMC">
     </div>
   </div>
-
   <footer>👨‍💻 Criado por Rafael Soares e 🤖 ChatGPT</footer>
-
   <script>
     function autoFormatarAltura(valor) {
       valor = valor.replace(/\D/g, '');
@@ -79,37 +38,29 @@
       }
       return valor;
     }
-
     document.getElementById('altura').addEventListener('input', function (e) {
       e.target.value = autoFormatarAltura(e.target.value);
     });
-
     document.getElementById('imcForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
       const alturaInput = document.getElementById('altura').value.replace(',', '.');
       const pesoInput = document.getElementById('peso').value.replace(',', '.');
-
       const altura = parseFloat(alturaInput);
       const peso = parseFloat(pesoInput);
-
       const resultado = document.getElementById('resultado');
       const personagem = document.getElementById('personagem');
       const compartilhar = document.getElementById('compartilhar');
       const whatsapp = document.getElementById('whatsapp');
       const facebook = document.getElementById('facebook');
       const linkedin = document.getElementById('linkedin');
-
       if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
         resultado.textContent = 'Por favor, insira valores válidos.';
         compartilhar.style.display = 'none';
         return;
       }
-
       const imc = peso / (altura * altura);
       let mensagem = '';
       let categoria = '';
-
       if (imc < 18.5) {
         categoria = 'Abaixo do peso';
         personagem.src = 'imgs/magro.png';
@@ -120,24 +71,15 @@
         categoria = 'Sobrepeso';
         personagem.src = 'imgs/sobrepeso.png';
       } else if (imc >= 30.0) {
-        if (imc <= 34.9) {
-          categoria = 'Obesidade Grau I';
-        } else if (imc <= 39.9) {
-          categoria = 'Obesidade Grau II';
-        } else {
-          categoria = 'Obesidade Grau III';
-        }
+        categoria = 'Obesidade';
         personagem.src = 'imgs/obeso.png';
       }
-
       mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - ${categoria}`;
       resultado.textContent = mensagem;
-
       const texto = encodeURIComponent(`Meu resultado no cálculo de IMC foi: ${mensagem}`);
       whatsapp.href = `https://wa.me/?text=${texto}`;
       facebook.href = `https://www.facebook.com/sharer/sharer.php?u=https://seusite.com&quote=${texto}`;
       linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=https://seusite.com&summary=${texto}`;
-
       compartilhar.style.display = 'block';
     });
   </script>
