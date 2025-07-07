@@ -1,131 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de IMC</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e5e5e5;
+      color: #333;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 2rem;
-      background-color: #181818;
-      color: #dcdcdc;
+      padding: 0;
+    }
+    .container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
+      padding: 2rem;
+      gap: 2rem;
       justify-content: center;
-      height: 100vh;
     }
-
-    h1 {
-      color: #4fc3f7;
-      margin-bottom: 1rem;
-    }
-
-    form {
-      background-color: #242424;
+    .calculator {
+      background-color: #f4f4f4;
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       width: 100%;
       max-width: 400px;
     }
-
-    label {
-      font-weight: bold;
-      color: #90caf9;
+    .calculator h1 {
+      color: #00695c;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
     }
-
-    input {
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
       padding: 0.6rem;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+      font-size: 1rem;
+      background-color: #fff;
+      color: #333;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #00695c;
+      color: white;
       border: none;
       border-radius: 6px;
       font-size: 1rem;
-      outline: none;
-    }
-
-    input[type="number"]::-webkit-inner-spin-button {
-      display: none;
-    }
-
-    button {
-      background-color: #00bcd4;
-      color: #fff;
-      border: none;
-      padding: 0.8rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
     button:hover {
-      background-color: #0097a7;
+      background-color: #004d40;
     }
-
-    .resultado {
-      margin-top: 1.5rem;
+    #resultado {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    .animation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+    }
+    .animation img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .social-icons {
+      margin-top: 1rem;
+      background-color: #eeeeee;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
       text-align: center;
-      font-size: 1.2rem;
     }
-
-    .personagem {
-      width: 100px;
-      height: 100px;
-      margin: 1rem auto;
+    .social-icons p {
+      font-weight: bold;
+      color: #00695c;
+      margin-bottom: 0.8rem;
+    }
+    .social-icons a {
+      margin: 0 0.5rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.1);
+    }
+    .social-icons img {
+      width: 36px;
+      height: 36px;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      padding-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <h1>Calculadora de IMC</h1>
-  <form id="form-imc">
-    <div>
-      <label for="altura">Altura (em cm):</label>
-      <input 
-        type="number" 
-        id="altura" 
-        name="altura" 
-        placeholder="Ex: 175" 
-        min="50" 
-        max="300" 
-        required 
-        inputmode="numeric" 
-        pattern="[0-9]*"
-      />
+  <div class="container">
+    <div class="calculator">
+      <h1>Calculadora de IMC</h1>
+      <form id="imcForm">
+        <label for="altura">Altura (m):</label>
+        <input type="text" id="altura" placeholder="Ex: 175" required>
+        <label for="peso">Peso (kg):</label>
+        <input type="text" id="peso" placeholder="Ex: 7050" required>
+        <button type="submit">Calcular</button>
+      </form>
+      <div id="resultado"></div>
+      <div id="compartilhar" class="social-icons" style="display: none;">
+        <p>📤 Compartilhe seu resultado:</p>
+        <a id="whatsapp" target="_blank"><img src="imgs/whatsapp.png" alt="WhatsApp"></a>
+        <a id="facebook" target="_blank"><img src="imgs/facebook.png" alt="Facebook"></a>
+        <a id="linkedin" target="_blank"><img src="imgs/linkedin.png" alt="LinkedIn"></a>
+      </div>
     </div>
-
-    <div>
-      <label for="peso">Peso (em kg):</label>
-      <input 
-        type="number" 
-        id="peso" 
-        name="peso" 
-        placeholder="Ex: 70" 
-        min="10" 
-        max="500" 
-        required 
-        inputmode="numeric" 
-        pattern="[0-9]*"
-      />
+    <div class="animation">
+      <img id="personagem" src="imgs/calc.png" alt="Imagem Padrão IMC">
     </div>
-
-    <button type="submit">Calcular IMC</button>
-
-    <div class="resultado" id="resultado"></div>
-    <img src="" alt="Personagem" id="img-personagem" class="personagem" style="display: none;">
-  </form>
-
+  </div>
+  <footer>👨‍💻 Criado por Rafael Soares e 🤖 ChatGPT</footer>
   <script>
-    const form = document.getElementById('form-imc');
-    const alturaInput = document.getElementById('altura');
-    const pesoInput = document.getElementById('peso');
-    const resultado = document.getElementById('resultado');
-    const imgPersonagem = document.getElementById('img-personagem');
-
-    form.add
+    function autoFormatarAltura(valor) {
+      valor = valor.replace(/\D/g, '');
+      if (valor.length === 3) {
+        return valor[0] + "," + valor.slice(1);
+      }
+      return valor;
+    }
+    document.getElementById('altura').addEventListener('input', function (e) {
+      e.target.value = autoFormatarAltura(e.target.value);
+    });
+    document.getElementById('imcForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const alturaInput = document.getElementById('altura').value.replace(',', '.');
+      const pesoInput = document.getElementById('peso').value.replace(',', '.');
+      const altura = parseFloat(alturaInput);
+      const peso = parseFloat(pesoInput);
+      const resultado = document.getElementById('resultado');
+      const personagem = document.getElementById('personagem');
+      const compartilhar = document.getElementById('compartilhar');
+      const whatsapp = document.getElementById('whatsapp');
+      const facebook = document.getElementById('facebook');
+      const linkedin = document.getElementById('linkedin');
+      if (isNaN(altura) || isNaN(peso) || altura <= 0 || peso <= 0) {
+        resultado.textContent = 'Por favor, insira valores válidos.';
+        compartilhar.style.display = 'none';
+        return;
+      }
+      const imc = peso / (altura * altura);
+      let categoria = '';
+      if (imc < 18.5) {
+        categoria = 'Abaixo do peso';
+        personagem.src = 'imgs/magro.png';
+      } else if (imc <= 24.9) {
+        categoria = 'Peso normal';
+        personagem.src = 'imgs/normal.png';
+      } else if (imc <= 29.9) {
+        categoria = 'Sobrepeso';
+        personagem.src = 'imgs/sobrepeso.png';
+      } else {
+        categoria = 'Obesidade';
+        personagem.src = 'imgs/obeso.png';
+      }
+      const mensagem = `IMC: ${imc.toFixed(2).replace('.', ',')} - ${categoria}`;
+      resultado.textContent = mensagem;
+      const texto = encodeURIComponent(`Meu resultado no cálculo de IMC foi: ${mensagem}`);
+      whatsapp.href = `https://wa.me/?text=${texto}`;
+      facebook.href = `https://www.facebook.com/sharer/sharer.php?u=https://seusite.com&quote=${texto}`;
+      linkedin.href = `https://www.linkedin.com/sharing/share-offsite/?url=https://seusite.com&summary=${texto}`;
+      compartilhar.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
