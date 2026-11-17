@@ -1,177 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfólio - Rafael Soares Cardoso</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background-color: #181818;
-      color: #dcdcdc;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#070a10" />
 
-    header {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 2rem;
-    }
+    <title>Rafael Cardoso — Gestão de TI &amp; Engenharia de Software</title>
+    <meta
+      name="description"
+      content="Portfólio de Rafael Cardoso. Mais de dez anos em Tecnologia da Informação, com atuação em gestão de TI, operações, infraestrutura, suporte e liderança, em transição para engenharia de software, Cloud e DevOps."
+    />
+    <meta name="author" content="Rafael Cardoso" />
 
-    .perfil {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.8rem;
-    }
+    <link rel="canonical" href="https://rafaelgraffo.github.io/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://rafaelgraffo.github.io/?lang=pt" />
+    <link rel="alternate" hreflang="en" href="https://rafaelgraffo.github.io/?lang=en" />
+    <link rel="alternate" hreflang="fr" href="https://rafaelgraffo.github.io/?lang=fr" />
+    <link rel="alternate" hreflang="x-default" href="https://rafaelgraffo.github.io/" />
 
-    .perfil img.foto {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #00bcd4;
-      box-shadow: 0 0 10px rgba(0,188,212,0.3);
-    }
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rafael Cardoso — Gestão de TI &amp; Engenharia de Software" />
+    <meta
+      property="og:description"
+      content="Portfólio de Rafael Cardoso. Mais de dez anos em Tecnologia da Informação, com atuação em gestão de TI, operações, infraestrutura, suporte e liderança, em transição para engenharia de software, Cloud e DevOps."
+    />
+    <meta property="og:url" content="https://rafaelgraffo.github.io/" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:image" content="https://rafaelgraffo.github.io/rafael-cardoso.jpg" />
+    <meta property="og:image:alt" content="Foto de perfil de Rafael Cardoso" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1205" />
+    <meta property="og:image:height" content="880" />
 
-    h1 {
-      font-size: 2rem;
-      color: #4fc3f7;
-      margin: 0;
-    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rafael Cardoso — Gestão de TI &amp; Engenharia de Software" />
+    <meta
+      name="twitter:description"
+      content="Portfólio de Rafael Cardoso. Mais de dez anos em Tecnologia da Informação, com atuação em gestão de TI, operações, infraestrutura, suporte e liderança, em transição para engenharia de software, Cloud e DevOps."
+    />
+    <meta name="twitter:image" content="https://rafaelgraffo.github.io/rafael-cardoso.jpg" />
 
-    .titulo-info p {
-      font-size: 1rem;
-      margin: 0.2rem 0;
-      color: #b0bec5;
-    }
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preload" as="image" href="./rafael-cardoso.jpg" />
 
-    .stack-icons {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stack-icons img {
-      width: 32px;
-      height: 32px;
-      background-color: #fff;
-      border-radius: 6px;
-      padding: 2px;
-    }
-
-    .linkedin {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      text-decoration: none;
-      color: #90caf9;
-      font-weight: 500;
-      margin-top: 0.6rem;
-    }
-
-    .linkedin img {
-      width: 20px;
-      height: 20px;
-    }
-
-    .projetos {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .projeto {
-      background-color: #242424;
-      padding: 1.8rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-
-    .projeto h2 {
-      margin-top: 0;
-      color: #81d4fa;
-    }
-
-    .projeto a {
-      text-decoration: none;
-      color: #fff;
-      background-color: #00bcd4;
-      padding: 0.5rem 1.2rem;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 1rem;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .projeto a:hover {
-      background-color: #0097a7;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="perfil">
-      <img src="imag/perfil.png" alt="Foto de Rafael Soares" class="foto" />
-      <div class="titulo-info">
-        <h1>Rafael Soares Cardoso</h1>
-        <p>👨‍💻 Programador Júnior</p>
-        <div class="stack-icons">
-          <img src="imag/HTML.png" alt="HTML">
-          <img src="imag/CSS3.png" alt="CSS3">
-          <img src="imag/JavaScript.png" alt="JavaScript">
-          <img src="imag/Java .png" alt="Java">
-        </div>
-        <a class="linkedin" href="https://www.linkedin.com/in/rafaelgraffo" target="_blank">
-          <img src="imag/linkedin.png" alt="LinkedIn"> LinkedIn
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <section class="projetos">
-    <div class="projeto">
-      <h2>Formulário HTML e CSS</h2>
-      <p>Formulário web criado com foco em boas práticas de desenvolvimento, como semântica HTML, responsividade e acessibilidade.</p>
-      <ul>
-        <li>HTML5 e CSS3 com Flexbox</li>
-        <li>Layout responsivo e acessível</li>
-        <li>Estrutura clara com uso de `label`, `fieldset`, `aria-label`</li>
-      </ul>
-      <a href="formulario-html-css/" target="_blank">📋 Formulário</a>
-    </div>
-
-    <div class="projeto">
-      <h2>Calculadora com JavaScript</h2>
-      <p>Calculadora funcional criada com JavaScript puro, com foco na manipulação do DOM, lógica de programação e interatividade.</p>
-      <ul>
-        <li>Operações: soma, subtração, multiplicação, divisão</li>
-        <li>Interface moderna e responsiva</li>
-        <li>Manipulação de eventos de clique no DOM</li>
-      </ul>
-      <a href="calculadora-js/" target="_blank">🧮 Calculadora</a>
-    </div>
-
-    <div class="projeto">
-      <h2>Calculadora de IMC com Animações</h2>
-      <p>Projeto interativo que calcula o IMC e altera dinamicamente a imagem do personagem com base na faixa de resultado, utilizando HTML, CSS, JS e estilo Disney Pixar.</p>
-      <ul>
-        <li>Cálculo real com validação e conversão automática</li>
-        <li>Personagem animado de acordo com o IMC</li>
-        <li>Botões de compartilhamento social</li>
-      </ul>
-      <a href="calculadora-imc/" target="_blank">⚖️ IMC</a>
-    </div>
-  </section>
-</body>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rafael Soares Cardoso",
+        "alternateName": "Rafael Cardoso",
+        "jobTitle": "Gestão de TI & Engenharia de Software",
+        "url": "https://rafaelgraffo.github.io/",
+        "sameAs": [
+          "https://github.com/rafaelgraffo",
+          "https://www.linkedin.com/in/rafaelgraffo"
+        ]
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index-DYa_ba2s.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C8FwOsV3.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p>Este portfólio precisa de JavaScript ativado para exibir o conteúdo.</p>
+      <p>This portfolio requires JavaScript to display its content.</p>
+      <p>Ce portfolio nécessite JavaScript pour afficher son contenu.</p>
+    </noscript>
+  </body>
 </html>
